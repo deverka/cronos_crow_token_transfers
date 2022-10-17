@@ -7,8 +7,4 @@ type Transfer @entity {
   from: String!
   to: String!
   tokenId: BigInt!
-  #timestamp: date
-  #blockNumber: BigIntß
 }
-
-

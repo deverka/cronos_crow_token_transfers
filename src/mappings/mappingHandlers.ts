@@ -15,7 +15,6 @@ type TransferEventArgs = [string, string, BigNumber] & {
 export async function handleTransfer(
   event: EthermintEvmEvent<TransferEventArgs>
 ): Promise<void> {
-  //logger.info(JSON.stringify(event));
 
   const transfer = Transfer.create({
     id: event.transactionHash,
