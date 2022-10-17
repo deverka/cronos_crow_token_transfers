@@ -5,7 +5,7 @@ A basic Cosmos Ethermint EVM (based on Cronos) example project with an event and
 The Starter Package is an example that you can use as a starting point for developing your SubQuery project.
 A SubQuery package defines which data The SubQuery will index from the Substrate blockchain, and how it will store it.
 
-This Starter Package by default allows **indexing transactions and approvals of Wrapped CRO Token**. 
+This Starter Package by default allows **indexing transfers of Crow Token**. 
 
 ## Preparation
 
@@ -100,20 +100,12 @@ With this project can try to query with the following code to get a taste of how
 ```graphql
 {
   query {
-    approvals (first: 5) {
+    transfers (first: 5) {
         nodes {
             id
-            value
-            owner
-            spender
-        }
-    }
-    transactions (first: 5) {
-        nodes {
-            id
-            value
-            to: id
-            from: id
+            to
+            from
+            tokenId
         }
     }
   } 
