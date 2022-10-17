@@ -1,0 +1,65 @@
+specVersion: 1.0.0
+name: cronos-evm-starter
+version: 0.0.1
+runner:
+  node:
+    name: '@subql/node-cosmos'
+    version: '*'
+  query:
+    name: '@subql/query'
+    version: '*'
+description: >-
+  A basic Ethermint EVM example project with an event and call handler. Read
+  more about this at https://academy.subquery.network/build/cosmos-evm.html.
+  This project can be use as a starting point for developing your SubQuery
+  project
+repository: >-
+  https://github.com/subquery/cosmos-subql-starter/tree/main/Cronos/cronos-evm-starter
+schema:
+  file: ./schema.graphql
+network:
+  chainId: cronosmainnet_25-1
+  endpoint: 'https://rpc.cronos.org/'
+  dictionary: 'https://api.subquery.network/sq/subquery/cosmos-cronos-dictionary'
+  chainTypes:
+    ethermint.evm.v1:
+      file: ./proto/ethermint/evm/v1/tx.proto
+      messages:
+        - MsgEthereumTx
+        - LegacyTx
+        - AccessListTx
+        - DynamicFeeTx
+    ethermint.evm.v12:
+      file: ./proto/ethermint/evm/v1/evm.proto
+      messages:
+        - AccessTuple
+    google.protobuf:
+      file: ./proto/google/protobuf/any.proto
+      messages:
+        - Any
+dataSources:
+  - kind: cosmos/EthermintEvm
+    startBlock: 1474211 #change the startBlock 946
+    processor:
+      file: ./node_modules/@subql/ethermint-evm-processor/dist/index.js
+      options:
+        abi: erc20
+        address: '0xE4ab77ED89528d90E6bcf0E1Ac99C58Da24e79d5' #Crow Token
+    assets:
+      erc20:
+        file: ./cro-crow.abi.json 
+    mapping:
+      file: ./dist/index.js
+      handlers:
+        - handler: handleTransfer
+          kind: cosmos/EthermintEvmEvent
+          filter:
+            topics:
+              - 'Transfer(address indexed from, address indexed to, uint256 indexed tokenId)'
+              - null
+              - null
+              - null
+
+
+
+
