@@ -39,7 +39,7 @@ network:
         - Any
 dataSources:
   - kind: cosmos/EthermintEvm
-    startBlock: 5120574 #Cro Crow Token started at 946
+    startBlock: 5120574 #Note that Cro Crow Token started at 946
     processor:
       file: ./node_modules/@subql/ethermint-evm-processor/dist/bundle.js
       options:
