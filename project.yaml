@@ -41,7 +41,7 @@ dataSources:
   - kind: cosmos/EthermintEvm
     startBlock: 1474211 #change the startBlock 946
     processor:
-      file: ./node_modules/@subql/ethermint-evm-processor/dist/index.js
+      file: ./node_modules/@subql/ethermint-evm-processor/dist/bundle.js
       options:
         abi: erc20
         address: '0xE4ab77ED89528d90E6bcf0E1Ac99C58Da24e79d5' #Crow Token
