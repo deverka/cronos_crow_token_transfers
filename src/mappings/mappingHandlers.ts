@@ -1,8 +1,5 @@
 import { Transfer } from "../types";
-import {
-  EthermintEvmEvent,
-  EthermintEvmCall,
-} from "@subql/ethermint-evm-processor";
+import { EthermintEvmEvent } from "@subql/ethermint-evm-processor";
 import { BigNumber } from "ethers";
 
 // Setup types from ABI
@@ -12,6 +9,7 @@ type TransferEventArgs = [string, string, BigNumber] & {
   tokenId: BigNumber;
 };
 
+//Save transfer
 export async function handleTransfer(
   event: EthermintEvmEvent<TransferEventArgs>
 ): Promise<void> {
