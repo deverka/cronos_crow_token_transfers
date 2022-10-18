@@ -1,6 +1,6 @@
 # SubQuery Sample Project - Cronos Crow Token Transfer
 
-A basic Cosmos Ethermint EVM (based on Cronos) example project with an event handler. Read more about this at https://academy.subquery.network/quickstart/quickstart_chains/cosmos-cronos.html. 
+A basic Cosmos Ethermint EVM (based on Cronos) example project with an event handler. Read more about this at https://academy.subquery.network/quickstart/quickstart_chains/cosmos-cronos.html and https://academy.subquery.network/build/cosmos-evm.html
 
 This is an example project that showcases a typical SubQuery usage. It is a modification of SubQuery Starter Package - 
 that you can use as a starting point for developing any SubQuery project. A SubQuery package defines which data The SubQuery will index from the Substrate blockchain, and how it will store it.
