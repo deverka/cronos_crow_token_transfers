@@ -1,0 +1,49 @@
+specVersion: 1.0.0
+name: cronos-crow-token-transfers-via-eth
+version: 0.0.1
+runner:
+  node:
+    name: "@subql/node-ethereum"
+    version: "*"
+  query:
+    name: "@subql/query"
+    version: "*"
+description: >-
+  A basic Ethermint EVM example project with an event and call handler via the Etheruem API. Read
+  more about this at https://academy.subquery.network/build/cosmos-evm.html.
+  This project can be use as a starting point for developing your SubQuery
+  project
+repository: >-
+  https://github.com/subquery/cosmos-subql-starter/tree/main/Cronos/cronos-evm-starter
+schema:
+  file: ./schema.graphql
+network:
+  chainId: "25"
+  # This endpoint must be a public non-pruned archive node
+  # Public nodes may be rate limited, which can affect indexing speed
+  # When developing your project we suggest getting a private API key
+  # Take a look here for some Cronos endpoints https://moonflow.solutions/rpc-servers
+  endpoint: "https://evm.cronos.org/"
+  # Optionally provide the HTTP endpoint of a full chain dictionary to speed up processing
+  dictionary: "https://api.subquery.network/sq/subquery/cosmos-cronos-dictionary"
+
+dataSources:
+  - kind: ethereum/Runtime
+    startBlock: 946 # Note Cro Crow Token started at 946
+    options:
+      abi: erc20
+      address: "0xE4ab77ED89528d90E6bcf0E1Ac99C58Da24e79d5" #Cro Crow Token
+    assets:
+      erc20:
+        file: ./cro-crow.abi.json #ABI interface file specific for Cro Crow Token
+    mapping:
+      file: ./dist/index.js
+      handlers:
+        - handler: handleTransfer
+          kind: ethereum/LogHandler
+          filter:
+            topics:
+              - "Transfer(address indexed from, address indexed to, uint256 indexed tokenId)"
+              - null
+              - null
+              - null
